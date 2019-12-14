@@ -6,19 +6,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SwimCoach implements Coach {
-	
-	@Autowired
+
 	private FortuneService fortuneService;
 
-	@Value("${foo.email}")
-	private String email;
-	
-	@Value("${foo.team}")
-	private String team;
-	
-	public SwimCoach() {
+	public SwimCoach(FortuneService fortuneService) {
+		this.fortuneService = fortuneService;
 	}
-	
+
 	@Override
 	public String getDailyWorkout() {
 		return "Swim 1000 meters as a warm up.";
@@ -28,15 +22,6 @@ public class SwimCoach implements Coach {
 	public String getDailyFortune() {
 		return fortuneService.getFortune();
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getTeam() {
-		return team;
-	}	
-
 }
 
 
